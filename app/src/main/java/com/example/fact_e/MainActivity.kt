@@ -3,6 +3,7 @@ package com.example.fact_e
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.fact_e.databinding.ActivityMainBinding
@@ -21,31 +22,66 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        title = "Factura Electronica"
+
+        //llamamos nuestro string de array
+        val sorteoList = resources.getStringArray(R.array.sorteo)
+        //creamos nuestro adapter
+        val adapter = ArrayAdapter(this, R.layout.list_item, sorteoList)
+        with(binding.etSorteo){
+            setAdapter(adapter)
+        }
+
 
         binding.senData.setOnClickListener{
 
+
             var number = binding.etNumber.text.toString()
             var amount = binding.etAmount.text.toString()
-            var seller = binding.etSeller.text.toString()
+            var sorteo = binding.etSorteo.text.toString()
 
-           if (binding.etNumber.text.toString().isNotEmpty() && binding.etAmount.text.toString().isNotEmpty() && binding.etSeller.text.toString().isNotEmpty())
+           if (binding.etNumber.text.toString().isNotEmpty() && binding.etAmount.text.toString().isNotEmpty() && binding.etSorteo.text.toString().isNotEmpty())
            {
-               //REAL TIME DATABASE
-               DB = FirebaseDatabase.getInstance().getReference("Facturas")
 
-               val fact = DataFac(number, amount, seller )
+               val confirmSendData = AlertDialog.Builder(this)
+                   confirmSendData.setTitle("Confirmacion de envio de datos")
+                   confirmSendData.setIcon(R.drawable.sendata)
+                   confirmSendData.setMessage("¿Estas seguro de enviar este numero?")
+                   confirmSendData.setPositiveButton("Enviar"){
+                           dialog,_->
 
-               DB.child(number).setValue(fact).addOnSuccessListener {
-                   binding.etNumber.text?.clear()
-                   binding.etAmount.text?.clear()
-                   binding.etSeller.text?.clear()
+                       //REAL TIME DATABASE
+                       DB = FirebaseDatabase.getInstance().getReference("Facturas")
+
+                       //creamos una instancia de la clase datafac y le pasamos las variables de la clase
+                       val fact = DataFac(number.toInt(), amount.toInt(), sorteo )
+
+                       //el child sera el dato cabecera de nuestra coleccion y en setvalue le pasamos nuestro objeto fact que contiene los datos que mandaremos
+                       DB.child(sorteo).setValue(fact).addOnSuccessListener {
+                           binding.etNumber.text?.clear()
+                           binding.etAmount.text?.clear()
+                           binding.etSorteo.text?.clear()
+                           binding.etNumber.requestFocus()
+
+                           Toast.makeText(this, "Se ha enviado con exito", Toast.LENGTH_LONG).show()
+                       }.addOnFailureListener {
+                           Toast.makeText(this, "El envio ha fallado", Toast.LENGTH_LONG).show()
+                       }
+
+                       //FIRESTORE
+                       //llamamos a nuestra instancia de firebase y creamos nuestra collection
+
+                       //var fireNumber = binding.etNumber.text.toString()
+                       FS.collection("Facturas").document(sorteo).set(
+                           //Creamos un hashmap para crear nuestra coleccion y llamamos nuestras vistas para recuperar los datos y mandarlos a la coleccion
+                           hashMapOf("Numero" to number.toInt(), "Monto" to amount.toInt(), "Sorteo" to sorteo )
+                       )
+
+                   }
+               confirmSendData.setNegativeButton("Revisar"){
+                   dialog,_->
                    binding.etNumber.requestFocus()
-
-                   Toast.makeText(this, "Exitoso", Toast.LENGTH_LONG).show()
-               }.addOnFailureListener {
-                   Toast.makeText(this, "Fallido", Toast.LENGTH_LONG).show()
-               }
-
+               }.show()
            }else {
                var emptyInputs = AlertDialog.Builder(this)
                    .setTitle("Campos vacios")
@@ -59,14 +95,7 @@ class MainActivity : AppCompatActivity() {
                emptyInputs.create()
                emptyInputs.show()
            }
-            //FIRESTORE
-            //llamamos a nuestra instancia de firebase y creamos nuestra collection
 
-
-            FS.collection("Facturas").document(seller).set(
-                //Creamos un hashmap para crear nuestra coleccion y llamamos nuestras vistas para recuperar los datos y mandarlos a la coleccion
-                hashMapOf("Numero" to binding.etNumber.text.toString(), "Monto" to binding.etAmount.text.toString(), "Vendedor" to binding.etSeller.text.toString())
-            )
 
         }
     }

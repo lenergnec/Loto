@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/Nectarlavanda">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/number"
@@ -13,8 +14,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
+        android:textColorHint="@color/NectarAzulOscuro"
+        app:boxStrokeColor="@color/NectarAzulOscuro"
+        app:counterEnabled="true"
         app:counterMaxLength="3"
         app:endIconDrawable="@drawable/error"
         app:helperText="Numero del 1 al 100"
@@ -23,19 +27,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:startIconDrawable="@drawable/number"
-        app:counterEnabled="true"
-        app:boxStrokeColor="@color/NectarAzulOscuro"
-        android:textColorHint="@color/NectarAzulOscuro">
+        app:boxBackgroundColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:hint="Numero a jugar"
-            android:textColorHint="@color/NectarAzulOscuro"
             android:inputType="number"
             android:maxLength="3"
             android:maxLines="1"
+            android:textColorHint="@color/NectarAzulOscuro"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +60,8 @@
         app:startIconDrawable="@drawable/amount"
         app:counterMaxLength="4"
         app:boxStrokeColor="@color/NectarAzulOscuro"
-        android:textColorHint="@color/NectarAzulOscuro">
+        android:textColorHint="@color/NectarAzulOscuro"
+        app:boxBackgroundColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etAmount"
@@ -72,31 +76,28 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/seller"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
-        app:counterEnabled="true"
-        app:endIconDrawable="@drawable/error"
-        app:helperText="Nombre de lotero"
+        app:helperText="Si es en la "
         app:helperTextTextColor="@color/NectarRojoBajo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amount"
         app:startIconDrawable="@drawable/ic_baseline_person_24"
-        app:counterMaxLength="25"
         app:boxStrokeColor="@color/NectarAzulOscuro"
-        android:textColorHint="@color/NectarAzulOscuro">
+        android:textColorHint="@color/NectarAzulOscuro"
+        app:boxBackgroundColor="@color/white">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSeller"
+        <AutoCompleteTextView
+            android:id="@+id/etSorteo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre del vendedor"
-            android:inputType="text"
-            android:maxLength="20"
+            android:hint="Turno de sorteo"
+            android:inputType="none"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -119,11 +120,11 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="252dp"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/undraw_typewriter" />
+        app:srcCompat="@drawable/digitalbill2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

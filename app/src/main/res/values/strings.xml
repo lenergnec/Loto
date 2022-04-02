@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Fact-E</string>
+    <string-array name="sorteo">
+        <item>11am</item>
+        <item>3pm</item>
+        <item>9pm</item>
+    </string-array>
 </resources>

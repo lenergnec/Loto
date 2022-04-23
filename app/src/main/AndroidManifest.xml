@@ -4,27 +4,36 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_facicon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_facicon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FactE">
         <activity
-            android:name=".Splash"
-            android:exported="true"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
+            android:name=".Views.FragmentContainer"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+        </activity>
+        <activity
+            android:name=".Views.login"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.FactE.NoActionBar" />
+        <activity
+            android:name=".DataList"
+            android:exported="true" />
+        <activity
+            android:name=".Views.Splash"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar">
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

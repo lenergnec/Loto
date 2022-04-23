@@ -1,9 +1,11 @@
-package com.example.fact_e
+package com.example.fact_e.Views
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.fact_e.MainActivity
+import com.example.fact_e.R
 
 @Suppress("DEPRECATION")
 class Splash : AppCompatActivity() {

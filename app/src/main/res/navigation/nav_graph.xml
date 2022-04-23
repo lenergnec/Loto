@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.fact_e.Views.Fragments.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_newBill"
+            app:destination="@id/newBill" />
+    </fragment>
+    <fragment
+        android:id="@+id/newBill"
+        android:name="com.example.fact_e.Views.Fragments.NewBill"
+        android:label="fragment_new_bill"
+        tools:layout="@layout/fragment_new_bill" >
+        <action
+            android:id="@+id/action_newBill_to_home"
+            app:destination="@id/home" />
+    </fragment>
+    <fragment
+        android:id="@+id/ventas"
+        android:name="com.example.fact_e.Views.Fragments.Ventas"
+        android:label="fragment_ventas"
+        tools:layout="@layout/fragment_ventas" >
+        <action
+            android:id="@+id/action_ventas_to_ventas9pm"
+            app:destination="@id/ventas9pm" />
+        <action
+            android:id="@+id/action_ventas_to_ventas3pm"
+            app:destination="@id/ventas3pm" />
+        <action
+            android:id="@+id/action_ventas_to_ventas11am"
+            app:destination="@id/ventas11am" />
+    </fragment>
+    <fragment
+        android:id="@+id/ventas11am"
+        android:name="com.example.fact_e.Views.Fragments.Ventas11am"
+        android:label="fragment_ventas11am"
+        tools:layout="@layout/fragment_ventas11am" >
+        <action
+            android:id="@+id/action_ventas11am_to_ventas"
+            app:destination="@id/ventas" />
+    </fragment>
+    <fragment
+        android:id="@+id/ventas3pm"
+        android:name="com.example.fact_e.Views.Fragments.Ventas3pm"
+        android:label="fragment_ventas3pm"
+        tools:layout="@layout/fragment_ventas3pm" >
+        <action
+            android:id="@+id/action_ventas3pm_to_ventas"
+            app:destination="@id/ventas" />
+    </fragment>
+    <fragment
+        android:id="@+id/ventas9pm"
+        android:name="com.example.fact_e.Views.Fragments.Ventas9pm"
+        android:label="fragment_ventas9pm"
+        tools:layout="@layout/fragment_ventas9pm" >
+        <action
+            android:id="@+id/action_ventas9pm_to_ventas"
+            app:destination="@id/ventas" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfil"
+        android:name="com.example.fact_e.Views.Fragments.Perfil"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
+</navigation>

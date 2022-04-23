@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/gdata11am"
+        android:icon="@drawable/number"
+        android:title="Sorteo 11am"/>
+    <item
+        android:id="@+id/gdata3pm"
+        android:icon="@drawable/number"
+        android:title="Sorteo 3pm" />
+    <item
+        android:id="@+id/gdata9pm"
+        android:icon="@drawable/number"
+        android:title="Sorteo 9pm" />
+</menu>

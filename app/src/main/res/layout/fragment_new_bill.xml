@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Nectarlavanda"
     android:visibility="visible"
-    tools:context=".MainActivity"
-    android:background="@color/Nectarlavanda">
+    tools:context=".MainActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/number"
@@ -17,6 +17,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
         android:textColorHint="@color/NectarAzulOscuro"
+        app:boxBackgroundColor="@color/white"
         app:boxStrokeColor="@color/NectarAzulOscuro"
         app:counterEnabled="true"
         app:counterMaxLength="3"
@@ -26,14 +27,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:startIconDrawable="@drawable/ic_baseline_numbers_24"
-        app:startIconTint = "@color/NectarNaranja"
-        app:boxBackgroundColor="@color/white"
         app:prefixText="#"
-        app:prefixTextColor ="@color/NectarAzul">
+        app:prefixTextColor="@color/NectarAzul"
+        app:startIconDrawable="@drawable/ic_baseline_numbers_24"
+        app:startIconTint="@color/NectarNaranja">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNumber1"
+            android:id="@+id/etNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -53,21 +53,21 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
+        android:textColorHint="@color/NectarAzulOscuro"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/NectarAzulOscuro"
         app:counterEnabled="true"
+        app:counterMaxLength="3"
         app:endIconDrawable="@drawable/error"
         app:helperText="Monto por el cual se juega el numero"
         app:helperTextTextColor="@color/NectarRojoBajo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/number"
-        app:startIconDrawable="@drawable/ic_baseline_payment_24"
-        app:startIconTint = "@color/NectarNaranja"
-        app:counterMaxLength="3"
-        app:boxStrokeColor="@color/NectarAzulOscuro"
-        android:textColorHint="@color/NectarAzulOscuro"
-        app:boxBackgroundColor="@color/white"
         app:prefixText="C$"
-        app:prefixTextColor ="@color/NectarAzul">
+        app:prefixTextColor="@color/NectarAzul"
+        app:startIconDrawable="@drawable/ic_baseline_payment_24"
+        app:startIconTint="@color/NectarNaranja">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etAmount"
@@ -80,72 +80,87 @@
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/seller"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        app:helperText="Selecciona el turno en que se efectuara"
-        app:helperTextTextColor="@color/NectarRojoBajo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amount"
-        app:startIconDrawable="@drawable/ic_baseline_timer_24"
-        app:startIconTint = "@color/NectarNaranja"
-        app:boxStrokeColor="@color/NectarAzulOscuro"
-        android:textColorHint="@color/NectarAzulOscuro"
-        app:boxBackgroundColor="@color/white"
-        app:suffixText="am/pm"
-        app:suffixTextColor="@color/NectarAzul">
-
-        <AutoCompleteTextView
-            android:id="@+id/etSorteo1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Turno de sorteo"
-            android:inputType="none"
-            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <Button
         android:id="@+id/senData"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="25dp"
         android:background="@drawable/shape"
-        android:text="Enviar numero"
+        android:text="Agregar datos a factura"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seller" />
+        app:layout_constraintTop_toBottomOf="@+id/sorteos"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="252dp"
         android:scaleType="centerInside"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/digitalbill2" />
+        app:srcCompat="@drawable/digitalbill2"
+        android:visibility="gone"/>
 
-    <Button
-        android:id="@+id/btnData11am"
+    <RadioGroup
+        android:id="@+id/rg"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/senData"
-        android:background="@drawable/shape"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+
+        <RadioButton
+            android:id="@+id/sorteo11am"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11am"
+            android:shadowColor="@color/NectarAzulOscuro"
+            android:paddingRight="15dp" />
+
+        <RadioButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3pm"
+            android:backgroundTint="@color/NectarAzul"
+            android:paddingRight="15dp"/>
+
+        <RadioButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9pm"
+            android:textColor="@color/NectarAzulOscuro"
+            android:paddingRight="15dp"/>
+
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Seleccione el sorteo a jugar"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/NectarGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amount" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
